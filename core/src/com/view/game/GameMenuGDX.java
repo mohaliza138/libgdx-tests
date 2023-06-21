@@ -104,7 +104,7 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
             for (int j = 0; j < mapSize; j++) {
                 Sprite sprite = new Sprite(textureAtlas.findRegion((i > 20 && i < 26) ? "river" + random.nextInt(3) :
                         (j > 81 && j < 89) ? "burnt" + random.nextInt(3) : "wheat" + random.nextInt(3)));
-                sprite.setPosition(((j + i) * 15) - (MAP_WIDTH / 2), (j - i) * 8 - 8);
+                sprite.setPosition(getXFromIAndJ(i, j), getYFromIAndJ(i, j));
                 sprites[i][j] = sprite;
             }
         
@@ -114,7 +114,7 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
             for (int j = 0; j < mapSize; j++) {
                 if (i % 10 == 8 && (i + j) % 99 == 4) {
                     Sprite sprite = new Sprite(towerAtlas.findRegion("tower"));
-                    sprite.setPosition(((j + i) * 15) - (MAP_WIDTH / 2), (j - i) * 8 - 8);
+                    sprite.setPosition(getXFromIAndJ(i, j), getYFromIAndJ(i, j));
                     towers.add(sprite);
                 }
             }
@@ -212,6 +212,14 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
         }
 
         return false;
+    }
+    
+    public float getXFromIAndJ (int i, int j) {
+        return ((j + i) * 15) - (MAP_WIDTH / 2);
+    }
+    
+    public float getYFromIAndJ (int i, int j) {
+        return (j - i - 1) * 8;
     }
 
     @Override
