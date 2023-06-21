@@ -1,5 +1,6 @@
 package com.view.game;
 
+import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -47,8 +49,9 @@ public class GameMenuGDX extends ApplicationAdapter {
         ZOOM_SPEED = 0.1f;
         maxZoom = 1.0f;
         minZoom = 0.1f;
-        screenWidth = 2255;
-        screenHeight = 1504;
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        screenWidth = gd.getDisplayMode().getWidth();
+        screenHeight = gd.getDisplayMode().getHeight();
         currentTileI = currentTileJ = -1;
         hoverTime = 0;
         verticalCameraOnScreenRatio = MAP_HEIGHT / (2 * screenHeight);
@@ -59,7 +62,7 @@ public class GameMenuGDX extends ApplicationAdapter {
     @Override
     public void create () {
         stage = new Stage();
-    
+        
         windowWithTopRightCornerCloseButton = new WindowWithTopRightCornerCloseButton();
         windowWithTopRightCornerCloseButton.setSize(Gdx.graphics.getWidth(), 120);
         windowWithTopRightCornerCloseButton.setModal(true);
@@ -121,23 +124,25 @@ public class GameMenuGDX extends ApplicationAdapter {
 ////        System.out.println(Gdx.input.getX() + " : " + Gdx.input.getY());
 //        System.out.println("cursor relative pos(xy): " + (Gdx.input.getX() - screenWidth / 2) + " : " +
 //        (screenHeight / 2 - Gdx.input.getY()));
-//        System.out.println(getPositionI((MAP_WIDTH * (Gdx.input.getX() - screenWidth / 2) / (2 * screenWidth) + camera.position.x), (MAP_HEIGHT * (screenHeight / 2 - Gdx.input.getY()) / (2 * screenHeight) + camera.position.y)) + " : " + getPositionJ((MAP_WIDTH * (Gdx.input.getX() - screenWidth / 2) / (2 * screenWidth) + camera.position.x), (MAP_HEIGHT * (screenHeight / 2 - Gdx.input.getY()) / (2 * screenHeight) + camera.position.y)));
+//        System.out.println(getPositionI((MAP_WIDTH * (Gdx.input.getX() - screenWidth / 2) / (2 * screenWidth) +
+//        camera.position.x), (MAP_HEIGHT * (screenHeight / 2 - Gdx.input.getY()) / (2 * screenHeight) + camera
+//        .position.y)) + " : " + getPositionJ((MAP_WIDTH * (Gdx.input.getX() - screenWidth / 2) / (2 * screenWidth)
+//        + camera.position.x), (MAP_HEIGHT * (screenHeight / 2 - Gdx.input.getY()) / (2 * screenHeight) + camera
+//        .position.y)));
 //        System.out.println(getPositionI((Gdx.input.getX() - screenWidth / 2) + camera.position.x, (screenHeight / 2
 //        - Gdx.input.getY()) + camera.position.y) + " : " + getPositionJ((Gdx.input.getX() - camera.viewportWidth /
 //        2) + camera.position.x, (screenHeight / 2 - Gdx.input.getY()) + camera.position.y));
-        if (currentTileI == getPositionI(getCursorX(), getCursorY()) &&
-        currentTileJ == getPositionJ(getCursorX(), getCursorY())) {
+        if (currentTileI == getPositionI(getCursorX(), getCursorY()) && currentTileJ == getPositionJ(getCursorX(),
+                getCursorY())) {
             if (hoverTime <= 1f && hoverTime >= 0f) {
                 hoverTime += Gdx.graphics.getDeltaTime();
-            }
-            else if (hoverTime > 1f){
+            } else if (hoverTime > 1f) {
                 //TODO: implement hover function
                 System.out.println(hoverTime);
                 System.out.println("hover at i: " + getPositionI(getCursorX(), getCursorY()) + " j: " + getPositionJ(getCursorX(), getCursorY()));
                 hoverTime = -1f;
             }
-        }
-        else {
+        } else {
             hoverTime = 0f;
             currentTileI = getPositionI(getCursorX(), getCursorY());
             currentTileJ = getPositionJ(getCursorX(), getCursorY());
@@ -164,8 +169,8 @@ public class GameMenuGDX extends ApplicationAdapter {
             tower.draw(spriteBatch);
         }
         spriteBatch.end();
-    
-    
+        
+        
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
     }
@@ -188,10 +193,14 @@ public class GameMenuGDX extends ApplicationAdapter {
     }
     
     public void fitMap () {
-        if (camera.position.x > (MAP_WIDTH / 2 - camera.viewportWidth * camera.zoom / 2)) camera.position.x = MAP_WIDTH / 2 - camera.viewportWidth * camera.zoom / 2;
-        else if (camera.position.x < -(MAP_WIDTH / 2 - camera.viewportWidth * camera.zoom / 2)) camera.position.x = -(MAP_WIDTH / 2 - camera.viewportWidth * camera.zoom / 2);
-        if (camera.position.y > MAP_HEIGHT / 2 - camera.viewportHeight * camera.zoom / 2) camera.position.y = MAP_HEIGHT / 2 - camera.viewportHeight * camera.zoom / 2;
-        else if (camera.position.y < -(MAP_HEIGHT / 2 - camera.viewportHeight * camera.zoom / 2)) camera.position.y = -(MAP_HEIGHT / 2 - camera.viewportHeight * camera.zoom / 2);
+        if (camera.position.x > (MAP_WIDTH / 2 - camera.viewportWidth * camera.zoom / 2))
+            camera.position.x = MAP_WIDTH / 2 - camera.viewportWidth * camera.zoom / 2;
+        else if (camera.position.x < -(MAP_WIDTH / 2 - camera.viewportWidth * camera.zoom / 2))
+            camera.position.x = -(MAP_WIDTH / 2 - camera.viewportWidth * camera.zoom / 2);
+        if (camera.position.y > MAP_HEIGHT / 2 - camera.viewportHeight * camera.zoom / 2)
+            camera.position.y = MAP_HEIGHT / 2 - camera.viewportHeight * camera.zoom / 2;
+        else if (camera.position.y < -windowWithTopRightCornerCloseButton.getHeight() - (MAP_HEIGHT / 2 - camera.viewportHeight * camera.zoom / 2))
+            camera.position.y = -windowWithTopRightCornerCloseButton.getHeight() - (MAP_HEIGHT / 2 - camera.viewportHeight * camera.zoom / 2);
     }
     
     private void handleInput () {
@@ -220,11 +229,11 @@ public class GameMenuGDX extends ApplicationAdapter {
             }
         });
     }
-
+    
     public float getCursorX () {
         return MAP_WIDTH * camera.zoom * (Gdx.input.getX() - screenWidth / 2) / (2 * screenWidth) + camera.position.x;
     }
-
+    
     public float getCursorY () {
         return MAP_HEIGHT * camera.zoom * (screenHeight / 2 - Gdx.input.getY()) / (2 * screenHeight) + camera.position.y;
     }
