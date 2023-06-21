@@ -14,7 +14,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class GameMenuGDX extends ApplicationAdapter {
+public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
     private AssetManager textureAssets;
     private TextureAtlas textureAtlas;
     private AssetManager towerAssets;
@@ -62,18 +62,23 @@ public class GameMenuGDX extends ApplicationAdapter {
     @Override
     public void create () {
         stage = new Stage();
-        
         windowWithTopRightCornerCloseButton = new WindowWithTopRightCornerCloseButton();
-        windowWithTopRightCornerCloseButton.setSize(Gdx.graphics.getWidth(), 120);
+        windowWithTopRightCornerCloseButton.setSize(Gdx.graphics.getWidth(), 300);
         windowWithTopRightCornerCloseButton.setModal(true);
         windowWithTopRightCornerCloseButton.setVisible(true);
         windowWithTopRightCornerCloseButton.setMovable(true);
         windowWithTopRightCornerCloseButton.setPosition(0, 0);
-        Gdx.input.setInputProcessor(stage);
         stage.addActor(windowWithTopRightCornerCloseButton);
-        
+
+        InputMultiplexer multiplexer = new InputMultiplexer();
+        multiplexer.addProcessor(this);
+        multiplexer.addProcessor(stage);
+        Gdx.input.setInputProcessor(multiplexer);
+
         spriteBatch = new SpriteBatch();
-        
+
+
+
         textureAssets = new AssetManager();
         textureAssets.load("Tiles.atlas", TextureAtlas.class);
         textureAssets.finishLoading();
@@ -87,8 +92,8 @@ public class GameMenuGDX extends ApplicationAdapter {
         towerAtlas = towerAssets.get("Buildings.atlas");
         
         sprites = new Sprite[mapSize][mapSize];
-        Graphics.DisplayMode displayMode = Gdx.graphics.getDisplayMode();
-        Gdx.graphics.setFullscreenMode(displayMode);
+//        Graphics.DisplayMode displayMode = Gdx.graphics.getDisplayMode();
+//        Gdx.graphics.setFullscreenMode(displayMode);
         
         camera = new OrthographicCamera();
         camera.zoom = 1.0f;
@@ -113,7 +118,7 @@ public class GameMenuGDX extends ApplicationAdapter {
                     towers.add(sprite);
                 }
             }
-        
+
     }
     
     @Override
@@ -149,8 +154,6 @@ public class GameMenuGDX extends ApplicationAdapter {
             tower.draw(spriteBatch);
         }
         spriteBatch.end();
-        
-        
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
     }
@@ -183,28 +186,12 @@ public class GameMenuGDX extends ApplicationAdapter {
     private void handleInput () {
         float deltaTime = Gdx.graphics.getDeltaTime();
         float cameraSpeed = CAMERA_SPEED * deltaTime;
-        if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && camera.position.y - getCursorY() < MAP_HEIGHT / 4 - windowWithTopRightCornerCloseButton.getHeight()) {
+        if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && camera.position.y - getCursorY() < MAP_HEIGHT / 4 - windowWithTopRightCornerCloseButton.getHeight()) {
             float mouseX = -Gdx.input.getDeltaX() * camera.zoom * horizontalCameraOnScreenRatio;
             float mouseY = Gdx.input.getDeltaY() * camera.zoom * verticalCameraOnScreenRatio;
             camera.translate(mouseX * cameraSpeed, mouseY * cameraSpeed);
             fitMap();
         }
-        Gdx.input.setInputProcessor(new InputAdapter() {
-            @Override
-            public boolean scrolled (float x, float y) {
-                float zoomFactor = y * ZOOM_SPEED;
-                camera.zoom += zoomFactor;
-                if (camera.zoom < minZoom) camera.zoom = minZoom;
-                if (camera.zoom > maxZoom) camera.zoom = maxZoom;
-                fitMap();
-                return true;
-            }
-            
-            @Override
-            public boolean keyUp (int keycode) {
-                return super.keyUp(keycode);
-            }
-        });
     }
     
     public float getCursorX () {
@@ -213,5 +200,52 @@ public class GameMenuGDX extends ApplicationAdapter {
     
     public float getCursorY () {
         return MAP_HEIGHT * camera.zoom * (screenHeight / 2 - Gdx.input.getY()) / (2 * screenHeight) + camera.position.y;
+    }
+
+    @Override
+    public boolean keyDown(int keycode) {
+        if (keycode == Input.Keys.NUM_2 && camera.zoom < 5) {
+            camera.zoom += 1;
+        }
+        if (keycode == Input.Keys.NUM_3 && camera.zoom > 1) {
+            camera.zoom -= 1;
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean keyUp(int i) {
+        return false;
+    }
+
+    @Override
+    public boolean keyTyped(char c) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDown(int i, int i1, int i2, int i3) {
+        return false;
+    }
+
+    @Override
+    public boolean touchUp(int i, int i1, int i2, int i3) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDragged(int i, int i1, int i2) {
+        return false;
+    }
+
+    @Override
+    public boolean mouseMoved(int i, int i1) {
+        return false;
+    }
+
+    @Override
+    public boolean scrolled(float v, float v1) {
+        return false;
     }
 }

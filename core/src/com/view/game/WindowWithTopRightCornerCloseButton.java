@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
@@ -14,12 +13,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
+/**
+ * Window which features the close button in top right corner (button moved outside of the window bounds).
+ *
+ * @author serhiy
+ */
 public class WindowWithTopRightCornerCloseButton extends Window {
 
     private static final WindowStyle windowStyle;
     private static final ImageButtonStyle closeButtonStyle;
-    public static Button button;
-
     static {
         TextureAtlas textureAtlas = new TextureAtlas(Gdx.files.internal("windows.pack"));
         TextureAtlas textureAtlas1 = new TextureAtlas(Gdx.files.internal("click.pack"));
@@ -33,17 +35,15 @@ public class WindowWithTopRightCornerCloseButton extends Window {
      */
     public WindowWithTopRightCornerCloseButton() {
         super("", windowStyle);
-        button = new ImageButton(closeButtonStyle);
-        button.setPosition(10,20);
-        getTitleTable().add(button).size(20, 20).padRight(450).padTop(0);
 
-        button.addListener(new ClickListener() {
+        final Button closeButton = new ImageButton(closeButtonStyle);
+        closeButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("AD");
-                setVisible(false);
+                System.out.println("joon");
             }
         });
+        getTitleTable().add(closeButton).size(30, 30).padRight(450).padTop(50);
 
         setClip(false);
         setTransform(true);
