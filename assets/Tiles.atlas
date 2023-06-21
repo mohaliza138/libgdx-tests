@@ -1,0 +1,377 @@
+
+Tiles.png
+size: 516, 80
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+beach0
+  rotate: false
+  xy: 162, 9
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+beach1
+  rotate: false
+  xy: 2, 24
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+beach2
+  rotate: false
+  xy: 258, 9
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+boulder0
+  rotate: false
+  xy: 226, 61
+  size: 30, 17
+  orig: 30, 17
+  offset: 0, 0
+  index: -1
+boulder1
+  rotate: false
+  xy: 450, 25
+  size: 30, 17
+  orig: 30, 17
+  offset: 0, 0
+  index: -1
+boulder2
+  rotate: false
+  xy: 386, 61
+  size: 30, 17
+  orig: 30, 17
+  offset: 0, 0
+  index: -1
+burnt0
+  rotate: false
+  xy: 450, 62
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+burnt1
+  rotate: false
+  xy: 226, 22
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+burnt2
+  rotate: false
+  xy: 66, 2
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+dense-meadow0
+  rotate: false
+  xy: 482, 58
+  size: 30, 20
+  orig: 30, 20
+  offset: 0, 0
+  index: -1
+dense-meadow1
+  rotate: false
+  xy: 354, 59
+  size: 30, 19
+  orig: 30, 19
+  offset: 0, 0
+  index: -1
+dense-meadow2
+  rotate: false
+  xy: 98, 20
+  size: 30, 21
+  orig: 30, 21
+  offset: 0, 0
+  index: -1
+ditch
+  rotate: false
+  xy: 34, 62
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+east-rock
+  rotate: false
+  xy: 66, 38
+  size: 30, 40
+  orig: 30, 40
+  offset: 0, 0
+  index: -1
+grass0
+  rotate: false
+  xy: 386, 40
+  size: 30, 19
+  orig: 30, 19
+  offset: 0, 0
+  index: -1
+grass1
+  rotate: false
+  xy: 226, 40
+  size: 30, 19
+  orig: 30, 19
+  offset: 0, 0
+  index: -1
+grass2
+  rotate: false
+  xy: 418, 5
+  size: 30, 19
+  orig: 30, 19
+  offset: 0, 0
+  index: -1
+ground0
+  rotate: false
+  xy: 98, 2
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+ground1
+  rotate: false
+  xy: 386, 22
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+ground2
+  rotate: false
+  xy: 290, 43
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+iron0
+  rotate: false
+  xy: 450, 6
+  size: 30, 17
+  orig: 30, 17
+  offset: 0, 0
+  index: -1
+iron1
+  rotate: false
+  xy: 290, 23
+  size: 30, 18
+  orig: 30, 18
+  offset: 0, 0
+  index: -1
+iron2
+  rotate: false
+  xy: 162, 60
+  size: 30, 18
+  orig: 30, 18
+  offset: 0, 0
+  index: -1
+lake0
+  rotate: false
+  xy: 258, 27
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+lake1
+  rotate: false
+  xy: 66, 20
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+lake2
+  rotate: false
+  xy: 290, 5
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+meadow0
+  rotate: false
+  xy: 34, 7
+  size: 30, 20
+  orig: 30, 20
+  offset: 0, 0
+  index: -1
+meadow1
+  rotate: false
+  xy: 354, 37
+  size: 30, 20
+  orig: 30, 20
+  offset: 0, 0
+  index: -1
+meadow2
+  rotate: false
+  xy: 130, 22
+  size: 30, 19
+  orig: 30, 19
+  offset: 0, 0
+  index: -1
+north-rock
+  rotate: false
+  xy: 194, 30
+  size: 30, 48
+  orig: 30, 48
+  offset: 0, 0
+  index: -1
+oil0
+  rotate: false
+  xy: 386, 2
+  size: 30, 18
+  orig: 30, 18
+  offset: 0, 0
+  index: -1
+oil1
+  rotate: false
+  xy: 226, 2
+  size: 30, 18
+  orig: 30, 18
+  offset: 0, 0
+  index: -1
+oil2
+  rotate: false
+  xy: 130, 43
+  size: 30, 17
+  orig: 30, 17
+  offset: 0, 0
+  index: -1
+plain0
+  rotate: false
+  xy: 450, 44
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+plain1
+  rotate: false
+  xy: 322, 44
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+plain2
+  rotate: false
+  xy: 98, 43
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+river0
+  rotate: false
+  xy: 130, 4
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+river1
+  rotate: false
+  xy: 482, 40
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+river2
+  rotate: false
+  xy: 418, 62
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+sea0
+  rotate: false
+  xy: 418, 26
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+sea1
+  rotate: false
+  xy: 322, 62
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+sea2
+  rotate: false
+  xy: 130, 62
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+shallow-water0
+  rotate: false
+  xy: 418, 44
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+shallow-water1
+  rotate: false
+  xy: 194, 11
+  size: 30, 17
+  orig: 30, 17
+  offset: 0, 0
+  index: -1
+shallow-water2
+  rotate: false
+  xy: 2, 6
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+south-rock
+  rotate: false
+  xy: 2, 42
+  size: 30, 36
+  orig: 30, 36
+  offset: 0, 0
+  index: -1
+stony-ground0
+  rotate: false
+  xy: 354, 18
+  size: 30, 17
+  orig: 30, 17
+  offset: 0, 0
+  index: -1
+stony-ground1
+  rotate: false
+  xy: 290, 61
+  size: 30, 17
+  orig: 30, 17
+  offset: 0, 0
+  index: -1
+stony-ground2
+  rotate: false
+  xy: 98, 61
+  size: 30, 17
+  orig: 30, 17
+  offset: 0, 0
+  index: -1
+west-rock
+  rotate: false
+  xy: 258, 45
+  size: 30, 33
+  orig: 30, 33
+  offset: 0, 0
+  index: -1
+wheat0
+  rotate: false
+  xy: 34, 29
+  size: 30, 31
+  orig: 30, 31
+  offset: 0, 0
+  index: -1
+wheat1
+  rotate: false
+  xy: 322, 10
+  size: 30, 32
+  orig: 30, 32
+  offset: 0, 0
+  index: -1
+wheat2
+  rotate: false
+  xy: 162, 27
+  size: 30, 31
+  orig: 30, 31
+  offset: 0, 0
+  index: -1

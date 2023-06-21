@@ -1,0 +1,12 @@
+aa.png
+size: 1280, 182
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+window
+  rotate: false
+  xy: 0, 0
+  size: 1280, 182
+  orig: 1280, 182
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,22 @@
+
+Buildings.png
+size: 64, 256
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+tower
+  rotate: false
+  xy: 2, 55
+  size: 30, 119
+  split: 0, 0, 0, 0
+  pad: -1, -1, -1, -1
+  orig: 30, 119
+  offset: 0, 0
+  index: -1
+tower-wide
+  rotate: false
+  xy: 2, 2
+  size: 30, 51
+  orig: 30, 51
+  offset: 0, 0
+  index: -1
