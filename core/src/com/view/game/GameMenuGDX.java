@@ -92,7 +92,6 @@ public class GameMenuGDX extends ApplicationAdapter {
         
         camera = new OrthographicCamera();
         camera.zoom = 1.0f;
-//		camera.setToOrtho(false, displayMode.width, displayMode.height);
         camera.setToOrtho(false, MAP_WIDTH / 2, MAP_HEIGHT / 2);
         camera.position.set(0, 0, 0);
         Random random = new Random();
@@ -108,7 +107,7 @@ public class GameMenuGDX extends ApplicationAdapter {
         
         for (int i = 0; i < mapSize; i++)
             for (int j = 0; j < mapSize; j++) {
-                if ((i + j) % 99 == 4) {
+                if (i % 10 == 8 && (i + j) % 99 == 4) {
                     Sprite sprite = new Sprite(towerAtlas.findRegion("tower"));
                     sprite.setPosition(((j + i) * 15) - (MAP_WIDTH / 2), (j - i) * 8 - 8);
                     towers.add(sprite);
@@ -119,19 +118,6 @@ public class GameMenuGDX extends ApplicationAdapter {
     
     @Override
     public void render () {
-//        System.out.println("cam psition: " + camera.position.x + " : " + camera.position.y + "\nsize(wh): " +
-//        screenWidth + " : " + screenHeight);
-////        System.out.println(Gdx.input.getX() + " : " + Gdx.input.getY());
-//        System.out.println("cursor relative pos(xy): " + (Gdx.input.getX() - screenWidth / 2) + " : " +
-//        (screenHeight / 2 - Gdx.input.getY()));
-//        System.out.println(getPositionI((MAP_WIDTH * (Gdx.input.getX() - screenWidth / 2) / (2 * screenWidth) +
-//        camera.position.x), (MAP_HEIGHT * (screenHeight / 2 - Gdx.input.getY()) / (2 * screenHeight) + camera
-//        .position.y)) + " : " + getPositionJ((MAP_WIDTH * (Gdx.input.getX() - screenWidth / 2) / (2 * screenWidth)
-//        + camera.position.x), (MAP_HEIGHT * (screenHeight / 2 - Gdx.input.getY()) / (2 * screenHeight) + camera
-//        .position.y)));
-//        System.out.println(getPositionI((Gdx.input.getX() - screenWidth / 2) + camera.position.x, (screenHeight / 2
-//        - Gdx.input.getY()) + camera.position.y) + " : " + getPositionJ((Gdx.input.getX() - camera.viewportWidth /
-//        2) + camera.position.x, (screenHeight / 2 - Gdx.input.getY()) + camera.position.y));
         if (currentTileI == getPositionI(getCursorX(), getCursorY()) && currentTileJ == getPositionJ(getCursorX(),
                 getCursorY())) {
             if (hoverTime <= 1f && hoverTime >= 0f) {
@@ -146,9 +132,8 @@ public class GameMenuGDX extends ApplicationAdapter {
             hoverTime = 0f;
             currentTileI = getPositionI(getCursorX(), getCursorY());
             currentTileJ = getPositionJ(getCursorX(), getCursorY());
+            if (currentTileI > 99 || currentTileI < 0 || currentTileJ > 99 || currentTileJ < 0) currentTileI = currentTileJ = -1;
         }
-//        System.out.println(hoverTime);
-//        System.out.println(currentTileI + " : " + currentTileJ);
         handleInput();
         Gdx.gl.glClearColor(0.5f, 0.8f, 0.5f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -157,12 +142,7 @@ public class GameMenuGDX extends ApplicationAdapter {
         spriteBatch.begin();
         for (int i = 0; i < mapSize; i++) {
             for (int j = mapSize - 1; j >= 0; j--) {
-//				int numberX;
-//				int numberY;
-//				numberX = -47 * (j % 2 == 0 ? 0 : 1);
-//				numberY = 25 * j;
                 sprites[i][j].draw(spriteBatch);
-//				spriteBatch.draw(sprites[i][j]);
             }
         }
         for (Sprite tower : towers) {
@@ -178,9 +158,6 @@ public class GameMenuGDX extends ApplicationAdapter {
     @Override
     public void dispose () {
         spriteBatch.dispose();
-        for (int i = 0; i < mapSize; i++)
-            for (int j = 0; j < mapSize; j++) ;
-//				sprites[i][j]();
     }
     
     public int getPositionI (float x, float y) {
@@ -237,26 +214,4 @@ public class GameMenuGDX extends ApplicationAdapter {
     public float getCursorY () {
         return MAP_HEIGHT * camera.zoom * (screenHeight / 2 - Gdx.input.getY()) / (2 * screenHeight) + camera.position.y;
     }
-//	SpriteBatch batch;
-//	Texture img;
-//
-//	@Override
-//	public void create () {
-//		batch = new SpriteBatch();
-//		img = new Texture("badlogic.jpg");
-//	}
-//
-//	@Override
-//	public void render () {
-//		ScreenUtils.clear(1, 0, 0, 1);
-//		batch.begin();
-//		batch.draw(img, 100, 0);
-//		batch.end();
-//	}
-//
-//	@Override
-//	public void dispose () {
-//		batch.dispose();
-//		img.dispose();
-//	}
 }
