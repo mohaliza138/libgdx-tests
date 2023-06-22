@@ -35,8 +35,6 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
     private int currentTileI;
     private int currentTileJ;
     private float hoverTime;
-    private final float verticalCameraOnScreenRatio;
-    private final float horizontalCameraOnScreenRatio;
     private Stage stage;
     private WindowWithTopRightCornerCloseButton windowWithTopRightCornerCloseButton;
     
@@ -51,11 +49,9 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
         minZoom = 0.1f;
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         screenWidth = gd.getDisplayMode().getWidth();
-        screenHeight = gd.getDisplayMode().getHeight();
+        screenHeight = gd.getDisplayMode().getHeight() - 150;
         currentTileI = currentTileJ = -1;
         hoverTime = 0;
-        verticalCameraOnScreenRatio = MAP_HEIGHT / (2 * screenHeight);
-        horizontalCameraOnScreenRatio = MAP_WIDTH / (2 * screenWidth);
     }
     
     
@@ -97,7 +93,7 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
         
         camera = new OrthographicCamera();
         camera.zoom = 1.0f;
-        camera.setToOrtho(false, MAP_WIDTH / 2, MAP_HEIGHT / 2);
+        camera.setToOrtho(false, screenWidth, screenHeight);
         camera.position.set(0, 0, 0);
         Random random = new Random();
         for (int i = 0; i < mapSize; i++)
@@ -123,6 +119,8 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
     
     @Override
     public void render () {
+        System.out.println(Gdx.input.getX() + " : " + Gdx.input.getY());
+        System.out.println(getCursorX() + " : " + getCursorY() + "+");
         if (currentTileI == getPositionI(getCursorX(), getCursorY()) && currentTileJ == getPositionJ(getCursorX(),
                 getCursorY())) {
             if (hoverTime <= 1f && hoverTime >= 0f) {
@@ -187,19 +185,19 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
         float deltaTime = Gdx.graphics.getDeltaTime();
         float cameraSpeed = CAMERA_SPEED * deltaTime;
         if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && camera.position.y - getCursorY() < MAP_HEIGHT / 4 - windowWithTopRightCornerCloseButton.getHeight()) {
-            float mouseX = -Gdx.input.getDeltaX() * camera.zoom * horizontalCameraOnScreenRatio;
-            float mouseY = Gdx.input.getDeltaY() * camera.zoom * verticalCameraOnScreenRatio;
+            float mouseX = -Gdx.input.getDeltaX() * camera.zoom;
+            float mouseY = Gdx.input.getDeltaY() * camera.zoom;
             camera.translate(mouseX * cameraSpeed, mouseY * cameraSpeed);
             fitMap();
         }
     }
     
     public float getCursorX () {
-        return MAP_WIDTH * camera.zoom * (Gdx.input.getX() - screenWidth / 2) / (2 * screenWidth) + camera.position.x;
+        return camera.zoom * (Gdx.input.getX() - screenWidth / 2) + camera.position.x;
     }
     
     public float getCursorY () {
-        return MAP_HEIGHT * camera.zoom * (screenHeight / 2 - Gdx.input.getY()) / (2 * screenHeight) + camera.position.y;
+        return camera.zoom * (screenHeight / 2 - Gdx.input.getY()) + camera.position.y;
     }
 
     @Override
