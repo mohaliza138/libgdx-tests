@@ -132,7 +132,8 @@ public class GameMenuGDX extends ApplicationAdapter {
             hoverTime = 0f;
             currentTileI = getPositionI(getCursorX(), getCursorY());
             currentTileJ = getPositionJ(getCursorX(), getCursorY());
-            if (currentTileI > 99 || currentTileI < 0 || currentTileJ > 99 || currentTileJ < 0) currentTileI = currentTileJ = -1;
+            if (currentTileI > 99 || currentTileI < 0 || currentTileJ > 99 || currentTileJ < 0)
+                currentTileI = currentTileJ = -1;
         }
         handleInput();
         Gdx.gl.glClearColor(0.5f, 0.8f, 0.5f, 1);
@@ -169,7 +170,7 @@ public class GameMenuGDX extends ApplicationAdapter {
         return (int) ((Math.sin(Math.atan((float) 8 / 15) - Math.atan(y / (x + MAP_WIDTH / 2))) * Math.sqrt((x + MAP_WIDTH / 2) * (x + MAP_WIDTH / 2) + y * y)) / (Math.sqrt(289) * Math.sin(2 * Math.atan((float) 8 / 15))));
     }
     
-    public void fitMap () {
+    public void fitMapToTheScreen () {
         if (camera.position.x > (MAP_WIDTH / 2 - camera.viewportWidth * camera.zoom / 2))
             camera.position.x = MAP_WIDTH / 2 - camera.viewportWidth * camera.zoom / 2;
         else if (camera.position.x < -(MAP_WIDTH / 2 - camera.viewportWidth * camera.zoom / 2))
@@ -177,7 +178,8 @@ public class GameMenuGDX extends ApplicationAdapter {
         if (camera.position.y > MAP_HEIGHT / 2 - camera.viewportHeight * camera.zoom / 2)
             camera.position.y = MAP_HEIGHT / 2 - camera.viewportHeight * camera.zoom / 2;
         else if (camera.position.y < -windowWithTopRightCornerCloseButton.getHeight() - (MAP_HEIGHT / 2 - camera.viewportHeight * camera.zoom / 2))
-            camera.position.y = -windowWithTopRightCornerCloseButton.getHeight() - (MAP_HEIGHT / 2 - camera.viewportHeight * camera.zoom / 2);
+            camera.position.y =
+                    -windowWithTopRightCornerCloseButton.getHeight() - (MAP_HEIGHT / 2 - camera.viewportHeight * camera.zoom / 2);
     }
     
     private void handleInput () {
@@ -187,7 +189,7 @@ public class GameMenuGDX extends ApplicationAdapter {
             float mouseX = -Gdx.input.getDeltaX() * camera.zoom * horizontalCameraOnScreenRatio;
             float mouseY = Gdx.input.getDeltaY() * camera.zoom * verticalCameraOnScreenRatio;
             camera.translate(mouseX * cameraSpeed, mouseY * cameraSpeed);
-            fitMap();
+            fitMapToTheScreen();
         }
         Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
@@ -196,7 +198,7 @@ public class GameMenuGDX extends ApplicationAdapter {
                 camera.zoom += zoomFactor;
                 if (camera.zoom < minZoom) camera.zoom = minZoom;
                 if (camera.zoom > maxZoom) camera.zoom = maxZoom;
-                fitMap();
+                fitMapToTheScreen();
                 return true;
             }
             
