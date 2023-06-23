@@ -42,7 +42,6 @@ public class WindowWithTopRightCornerCloseButton extends Window {
      */
     public WindowWithTopRightCornerCloseButton() {
         super("", windowStyle);
-        final GameMenuGDX gameMenuGDX = new GameMenuGDX(100);
         final Button closeButton = new ImageButton(closeButtonStyle);
         getTitleTable().add(closeButton).size(30, 30).padRight(200).padTop(50);
         //   closeButton.addListener(new )
@@ -56,8 +55,8 @@ public class WindowWithTopRightCornerCloseButton extends Window {
                     System.out.println((closeButton.getX() - screenWidth / 2) * GameMenuGDX.camera.zoom + " : " + GameMenuGDX.camera.zoom * ((closeButton.getY() - ((screenHeight - 150) / 2) + 300)));
                     System.out.println("camera position: " + GameMenuGDX.camera.position.x + " : " + GameMenuGDX.camera.position.y);
                     System.out.println((closeButton.getX() - screenWidth / 2) * GameMenuGDX.camera.zoom + GameMenuGDX.camera.position.x + " : " + (GameMenuGDX.camera.zoom * ((closeButton.getY() - ((screenHeight - 150) / 2) + 300)) + GameMenuGDX.camera.position.y));
-                    int j = gameMenuGDX.getPositionJ((closeButton.getX() - screenWidth / 2) * GameMenuGDX.camera.zoom + GameMenuGDX.camera.position.x , (GameMenuGDX.camera.zoom * ((closeButton.getY() - ((screenHeight - 150) / 2) + 300)) + GameMenuGDX.camera.position.y));
-                    int i = gameMenuGDX.getPositionI((closeButton.getX() - screenWidth / 2) * GameMenuGDX.camera.zoom + GameMenuGDX.camera.position.x , (GameMenuGDX.camera.zoom * ((closeButton.getY() - ((screenHeight - 150) / 2) + 300)) + GameMenuGDX.camera.position.y));
+                    int j = GameMenuGDX.getPositionJ((closeButton.getX() - screenWidth / 2) * GameMenuGDX.camera.zoom + GameMenuGDX.camera.position.x , (GameMenuGDX.camera.zoom * ((closeButton.getY() - ((screenHeight - 150) / 2) + 300)) + GameMenuGDX.camera.position.y));
+                    int i = GameMenuGDX.getPositionI((closeButton.getX() - screenWidth / 2) * GameMenuGDX.camera.zoom + GameMenuGDX.camera.position.x , (GameMenuGDX.camera.zoom * ((closeButton.getY() - ((screenHeight - 150) / 2) + 300)) + GameMenuGDX.camera.position.y));
                     System.out.println(i + " : " + j);
                     AssetManager textureAssets;
                     textureAssets = new AssetManager();
@@ -66,7 +65,7 @@ public class WindowWithTopRightCornerCloseButton extends Window {
                     TextureAtlas textureAtlas;
                     textureAtlas = textureAssets.get("Tiles.atlas");
                     Sprite sprite = new Sprite(textureAtlas.findRegion("river0"));
-                    sprite.setPosition(((j + i) * 15) - (gameMenuGDX.MAP_WIDTH / 2), (j - i) * 8 - 8);
+                    sprite.setPosition(((j + i) * 15) - (GameMenuGDX.MAP_WIDTH / 2), (j - i) * 8 - 8);
                     GameMenuGDX.sprites[i][j] = sprite;
                     closeButton.setX(500);
                     closeButton.setY(10);

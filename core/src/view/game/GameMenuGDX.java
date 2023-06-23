@@ -4,6 +4,7 @@ import com.badlogic.gdx.*;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -12,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import model.Block;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor {
     public static OrthographicCamera camera;
     public static Sprite[][] sprites;
     private final float CAMERA_SPEED;
+    private final Block[][] blocks;
     private final float ZOOM_SPEED;
     private final float maxZoom;
     private final float minZoom;
@@ -35,6 +38,8 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor {
     private TextureAtlas towerAtlas;
     private AssetManager map2dAssets;
     private TextureAtlas map2dAtlas;
+    private AssetManager slaveAssets;
+    private TextureAtlas slaveAtlas;
     private SpriteBatch spriteBatch;
     private Sprite[][] sprites2d;
     private ArrayList<Sprite> towers;
@@ -48,10 +53,15 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor {
     private WindowWithTopRightCornerCloseButton windowWithTopRightCornerCloseButton;
     private int draggingTileI;
     private int draggingTileJ;
+    private Sprite slave;
+    private ArrayList<Block> path;
+    private int slaveI;
+    private int slaveJ;
     
     
-    public GameMenuGDX (int mapSize) {
-        this.mapSize = mapSize;
+    public GameMenuGDX (Block[][] blocks) {
+        this.blocks = blocks;
+        this.mapSize = blocks.length;
         MAP_HEIGHT = 16 * mapSize;
         MAP_WIDTH = 30 * mapSize;
         CAMERA_SPEED = 70f;
@@ -100,12 +110,18 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor {
         towerAssets.finishLoading();
         
         towerAtlas = towerAssets.get("Buildings.atlas");
-        
+    
         map2dAssets = new AssetManager();
         map2dAssets.load("miniMap.atlas", TextureAtlas.class);
         map2dAssets.finishLoading();
-        
+    
         map2dAtlas = map2dAssets.get("miniMap.atlas");
+    
+        slaveAssets = new AssetManager();
+        slaveAssets.load("slave.atlas", TextureAtlas.class);
+        slaveAssets.finishLoading();
+    
+        slaveAtlas = slaveAssets.get("slave.atlas");
         
         
         sprites = new Sprite[mapSize][mapSize];
@@ -118,11 +134,9 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor {
         Random random = new Random();
         for (int i = 0; i < mapSize; i++)
             for (int j = 0; j < mapSize; j++) {
-                sprites[i][j] = new Sprite(textureAtlas.findRegion((i > 20 && i < 26) ? "river" + random.nextInt(3) :
-                        (j > 81 && j < 89) ? "burnt" + random.nextInt(3) : "ground" + random.nextInt(3)));
+                sprites[i][j] = new Sprite(textureAtlas.findRegion(blocks[i][j].texture + random.nextInt(3)));
                 sprites[i][j].setPosition(getXFromIAndJ(i, j), getYFromIAndJ(i, j));
-                sprites2d[i][j] = new Sprite(map2dAtlas.findRegion((i > 20 && i < 26) ? "river" : (j > 81 && j < 89)
-                        ? "burnt" : "wheat"));
+                sprites2d[i][j] = new Sprite(map2dAtlas.findRegion(blocks[i][j].texture));
             }
         
         sprites[10][15] = new Sprite(towerAtlas.findRegion("tower"));
@@ -138,10 +152,41 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor {
                     towers.add(sprite);
                 }
             }
+        
+        slave = new Sprite(slaveAtlas.findRegion("slave10"));
+        slave.setPosition(getXFromIAndJ(40, 40), getYFromIAndJ(40, 40));
+        slaveI = slaveJ = 40;
+        path = new ArrayList<>();
+        path.add(blocks[40][40]);
+        path.add(blocks[40][41]);
+        path.add(blocks[40][42]);
+        path.add(blocks[41][42]);
+        path.add(blocks[42][42]);
+        path.add(blocks[41][42]);
+        path.add(blocks[40][42]);
+        path.add(blocks[40][41]);
+        path.add(blocks[40][40]);
     }
+    float stepTime = 0;
     
     @Override
     public void render () {
+        stepTime += Gdx.graphics.getDeltaTime();
+        if (stepTime > 1f) {
+            stepTime = 0;
+//            System.out.println("slave" + (path.get(0).i - slaveI) + (path.get(0).j - slaveJ));
+            if (path.size() == 0) slave.setRegion(slaveAtlas.findRegion("slave10"));
+            else if ((path.get(0).i - slaveI) != 0 || (path.get(0).j - slaveJ) != 0) {
+                slave.setRegion(slaveAtlas.findRegion("slave" + (path.get(0).i - slaveI) + (path.get(0).j - slaveJ)));
+                slave.setPosition(getXFromIAndJ(path.get(0).i, path.get(0).j), getYFromIAndJ(path.get(0).i, path.get(0).j));
+                slaveI = path.get(0).i;
+                slaveJ = path.get(0).j;
+                Block temp = path.get(0);
+                path.remove(0);
+                path.add(temp);
+            }
+            else path.remove(0);
+        }
         if (currentTileJ == getPositionJ(getCursorX(), getCursorY()) && currentTileI == getPositionI(getCursorX(),
                 getCursorY())) {
             if (hoverTime <= 1f && hoverTime >= 0f) {
@@ -191,6 +236,7 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor {
                 sprites2d[i][j].draw(spriteBatch);
             }
         }
+        slave.draw(spriteBatch);
         spriteBatch.end();
     }
     
@@ -199,12 +245,12 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor {
         spriteBatch.dispose();
     }
     
-    public int getPositionJ (float x, float y) {
+    public static int getPositionJ (float x, float y) {
         double atan = Math.atan(y / (x + MAP_WIDTH / 2));
         return (int) (((Math.cos(Math.atan((float) 8 / 15) - atan) - Math.sin(Math.atan((float) 8 / 15) - atan) / Math.tan(2 * Math.atan((float) 8 / 15))) * Math.sqrt((x + MAP_WIDTH / 2) * (x + MAP_WIDTH / 2) + y * y)) / Math.sqrt(289));
     }
     
-    public int getPositionI (float x, float y) {
+    public static int getPositionI (float x, float y) {
         return (int) ((Math.sin(Math.atan((float) 8 / 15) - Math.atan(y / (x + MAP_WIDTH / 2))) * Math.sqrt((x + MAP_WIDTH / 2) * (x + MAP_WIDTH / 2) + y * y)) / (Math.sqrt(289) * Math.sin(2 * Math.atan((float) 8 / 15))));
     }
     
