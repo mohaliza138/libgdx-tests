@@ -265,7 +265,7 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor {
         TextureAtlas textureAtlas = new TextureAtlas(Gdx.files.internal("hoverBackGround.pack"));
         dialog.setBackground(new TextureRegionDrawable(textureAtlas.findRegion("background")));
         dialog.show(stage1);
-        dialog.setPosition(Gdx.input.getX(), screenHeight - Gdx.input.getY());
+        dialog.setPosition(Gdx.input.getX() - dialog.getWidth() / 2, screenHeight - Gdx.input.getY() + 10);
     }
     
     @Override
