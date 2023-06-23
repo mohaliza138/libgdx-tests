@@ -22,21 +22,24 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
     private TextureAtlas textureAtlas;
     private AssetManager towerAssets;
     private TextureAtlas towerAtlas;
-    private final float MAP_WIDTH;
-    private final float MAP_HEIGHT;
+    private AssetManager map2dAssets;
+    private TextureAtlas map2dAtlas;
+    public static float MAP_WIDTH;
+    public static float MAP_HEIGHT;
     private final float CAMERA_SPEED;
     private final float ZOOM_SPEED;
     private final float maxZoom;
     private final float minZoom;
     private final int mapSize;
-    private OrthographicCamera camera;
+    public static OrthographicCamera camera;
     private SpriteBatch spriteBatch;
-    private Sprite[][] sprites;
+    public static Sprite[][] sprites;
+    private Sprite[][] sprites2d;
     private ArrayList<Sprite> towers;
     private final float screenWidth;
     private final float screenHeight;
-    private int currentTileI;
     private int currentTileJ;
+    private int currentTileI;
     private float hoverTime;
     private Stage stage;
     private Stage stage1;
@@ -56,7 +59,7 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         screenWidth = gd.getDisplayMode().getWidth();
         screenHeight = gd.getDisplayMode().getHeight() - 150;
-        currentTileI = currentTileJ = -1;
+        currentTileJ = currentTileI = -1;
         hoverTime = 0;
     }
     
@@ -97,7 +100,15 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
         
         towerAtlas = towerAssets.get("Buildings.atlas");
         
+        map2dAssets = new AssetManager();
+        map2dAssets.load("miniMap.atlas", TextureAtlas.class);
+        map2dAssets.finishLoading();
+    
+        map2dAtlas = map2dAssets.get("miniMap.atlas");
+    
+    
         sprites = new Sprite[mapSize][mapSize];
+        sprites2d = new Sprite[mapSize][mapSize];
 //        Graphics.DisplayMode displayMode = Gdx.graphics.getDisplayMode();
 //        Gdx.graphics.setFullscreenMode(displayMode);
         
@@ -108,13 +119,16 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
         Random random = new Random();
         for (int i = 0; i < mapSize; i++)
             for (int j = 0; j < mapSize; j++) {
-                Sprite sprite = new Sprite(textureAtlas.findRegion((i > 20 && i < 26) ? "river" + random.nextInt(3) :
-                        (j > 81 && j < 89) ? "burnt" + random.nextInt(3) : "wheat" + random.nextInt(3)));
-                sprite.setPosition(getXFromIAndJ(i, j), getYFromIAndJ(i, j));
-                sprites[i][j] = sprite;
+                sprites[i][j] = new Sprite(textureAtlas.findRegion((i > 20 && i < 26) ? "river" + random.nextInt(3) :
+                        (j > 81 && j < 89) ? "burnt" + random.nextInt(3) : "ground" + random.nextInt(3)));
+                sprites[i][j].setPosition(getXFromIAndJ(i, j), getYFromIAndJ(i, j));
+                sprites2d[i][j] = new Sprite(map2dAtlas.findRegion((i > 20 && i < 26) ? "river" : (j > 81 && j < 89)
+                        ? "burnt" : "wheat"));
             }
-
-        
+    
+        sprites[10][15] = new Sprite(towerAtlas.findRegion("tower"));
+        sprites[10][15].setPosition(getXFromIAndJ(10, 15), getYFromIAndJ(10, 15));
+    
         towers = new ArrayList<>();
         
         for (int i = 0; i < mapSize; i++)
@@ -133,7 +147,7 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
     
     @Override
     public void render () {
-        if (currentTileI == getPositionJ(getCursorX(), getCursorY()) && currentTileJ == getPositionI(getCursorX(),
+        if (currentTileJ == getPositionJ(getCursorX(), getCursorY()) && currentTileI == getPositionI(getCursorX(),
                 getCursorY())) {
             if (hoverTime <= 1f && hoverTime >= 0f) {
                 hoverTime += Gdx.graphics.getDeltaTime();
@@ -147,9 +161,9 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
             }
         } else {
             hoverTime = 0f;
-            currentTileI = getPositionJ(getCursorX(), getCursorY());
-            currentTileJ = getPositionI(getCursorX(), getCursorY());
-            if (currentTileI > 99 || currentTileI < 0 || currentTileJ > 99 || currentTileJ < 0) currentTileI = currentTileJ = -1;
+            currentTileJ = getPositionJ(getCursorX(), getCursorY());
+            currentTileI = getPositionI(getCursorX(), getCursorY());
+            if (currentTileJ > 99 || currentTileJ < 0 || currentTileI > 99 || currentTileI < 0) currentTileJ = currentTileI = -1;
             if (!stage1.getActors().isEmpty())
                 stage1.getActors().get(0).remove();
 
@@ -175,6 +189,17 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
         stage.draw();
         stage1.act(Gdx.graphics.getDeltaTime());
         stage1.draw();
+        
+        spriteBatch.begin();
+        for (int i = 0; i < mapSize; i++) {
+            for (int j = 0; j < mapSize; j++) {
+                sprites2d[i][j].setSize(1.8F * camera.zoom, 1.8F * camera.zoom);
+                sprites2d[i][j].setPosition(camera.position.x + (3 * screenWidth / 8 + j * 1.8F) * camera.zoom,
+                        camera.position.y + (i * 1.8F - screenHeight / 2) * camera.zoom);
+                sprites2d[i][j].draw(spriteBatch);
+            }
+        }
+        spriteBatch.end();
     }
     
     @Override
@@ -263,7 +288,7 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
 
     @Override
     public boolean touchDown(int i, int i1, int i2, int i3) {
-        if (i3 == 0) {
+        if (i3 == 0 && Gdx.input.isKeyPressed(Input.Keys.S)) {
             int x1 = Gdx.input.getX();
             int y1 = Gdx.input.getY();
             Vector3 input = new Vector3(x1, y1, 0);
@@ -297,7 +322,7 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
 
     @Override
     public boolean touchDragged(int i, int i1, int i2) {
-        if (Gdx.input.isButtonPressed(0)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.S) && i2 == 0) {
             int x1 = Gdx.input.getX();
             int y1 = Gdx.input.getY();
             Vector3 input = new Vector3(x1, y1, 0);
@@ -310,7 +335,7 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
 //                            TextureAtlas textureAtlas = new TextureAtlas(Gdx.files.internal("riverTesting.pack"));
 //                            Sprite sprite1 = new Sprite(textureAtlas.findRegion("Tile1"));
 //                            sprite1.setPosition(getXFromIAndJ(k, j), getYFromIAndJ(k, j));
-                            if (sprites[k][j].getColor().b == 0.5 && sprites[k][j].getColor().g == 0.5 && sprites[k][j].getColor().r == 0.5 && currentTileI != getPositionJ(getCursorX(), getCursorY()) && currentTileJ != getPositionI(getCursorX(),
+                            if (sprites[k][j].getColor().b == 0.5 && sprites[k][j].getColor().g == 0.5 && sprites[k][j].getColor().r == 0.5 && currentTileJ != getPositionJ(getCursorX(), getCursorY()) && currentTileI != getPositionI(getCursorX(),
                                     getCursorY()))
                                 sprites[k][j].setColor(1, 1, 1, 1);
                             else
@@ -321,6 +346,7 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
                 }
             }
         }
+        
         return false;
     }
 
