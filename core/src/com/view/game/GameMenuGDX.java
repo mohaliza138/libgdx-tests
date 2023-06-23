@@ -1,6 +1,5 @@
 package com.view.game;
 
-import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
@@ -14,11 +13,13 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
+public class GameMenuGDX extends ApplicationAdapter implements InputProcessor {
     private AssetManager textureAssets;
     private TextureAtlas textureAtlas;
     private AssetManager towerAssets;
     private TextureAtlas towerAtlas;
+    private AssetManager map2dAssets;
+    private TextureAtlas map2dAtlas;
     private final float MAP_WIDTH;
     private final float MAP_HEIGHT;
     private final float CAMERA_SPEED;
@@ -29,11 +30,12 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
     private OrthographicCamera camera;
     private SpriteBatch spriteBatch;
     private Sprite[][] sprites;
+    private Sprite[][] sprites2d;
     private ArrayList<Sprite> towers;
     private final float screenWidth;
     private final float screenHeight;
+    private int currentTilej;
     private int currentTileI;
-    private int currentTileJ;
     private float hoverTime;
     private Stage stage;
     private WindowWithTopRightCornerCloseButton windowWithTopRightCornerCloseButton;
@@ -50,7 +52,7 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         screenWidth = gd.getDisplayMode().getWidth();
         screenHeight = gd.getDisplayMode().getHeight() - 150;
-        currentTileI = currentTileJ = -1;
+        currentTilej = currentTileI = -1;
         hoverTime = 0;
     }
     
@@ -65,16 +67,15 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
         windowWithTopRightCornerCloseButton.setMovable(true);
         windowWithTopRightCornerCloseButton.setPosition(0, 0);
         stage.addActor(windowWithTopRightCornerCloseButton);
-
+        
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(this);
         multiplexer.addProcessor(stage);
         Gdx.input.setInputProcessor(multiplexer);
-
+        
         spriteBatch = new SpriteBatch();
-
-
-
+        
+        
         textureAssets = new AssetManager();
         textureAssets.load("Tiles.atlas", TextureAtlas.class);
         textureAssets.finishLoading();
@@ -87,7 +88,14 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
         
         towerAtlas = towerAssets.get("Buildings.atlas");
         
+        map2dAssets = new AssetManager();
+        map2dAssets.load("miniMap.atlas", TextureAtlas.class);
+        map2dAssets.finishLoading();
+        
+        map2dAtlas = map2dAssets.get("miniMap.atlas");
+        
         sprites = new Sprite[mapSize][mapSize];
+        sprites2d = new Sprite[mapSize][mapSize];
 //        Graphics.DisplayMode displayMode = Gdx.graphics.getDisplayMode();
 //        Gdx.graphics.setFullscreenMode(displayMode);
         
@@ -98,12 +106,14 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
         Random random = new Random();
         for (int i = 0; i < mapSize; i++)
             for (int j = 0; j < mapSize; j++) {
-                Sprite sprite = new Sprite(textureAtlas.findRegion((i > 20 && i < 26) ? "river" + random.nextInt(3) :
-                        (j > 81 && j < 89) ? "burnt" + random.nextInt(3) : "wheat" + random.nextInt(3)));
-                sprite.setPosition(getXFromIAndJ(i, j), getYFromIAndJ(i, j));
-                sprites[i][j] = sprite;
+                sprites[i][j] = new Sprite(textureAtlas.findRegion((i > 20 && i < 26) ? "river" + random.nextInt(3) :
+                        (j > 81 && j < 89) ? "burnt" + random.nextInt(3) : "ground" + random.nextInt(3)));
+                sprites[i][j].setPosition(getXFromIAndJ(i, j), getYFromIAndJ(i, j));
+                sprites2d[i][j] = new Sprite(map2dAtlas.findRegion((i > 20 && i < 26) ? "river" : (j > 81 && j < 89)
+                        ? "burnt" : "wheat"));
             }
-        
+        sprites[10][15] = new Sprite(towerAtlas.findRegion("tower"));
+        sprites[10][15].setPosition(getXFromIAndJ(10, 15), getYFromIAndJ(10, 15));
         towers = new ArrayList<>();
         
         for (int i = 0; i < mapSize; i++)
@@ -114,14 +124,14 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
                     towers.add(sprite);
                 }
             }
-
+        
     }
     
     @Override
     public void render () {
-        System.out.println(Gdx.input.getX() + " : " + Gdx.input.getY());
-        System.out.println(getCursorX() + " : " + getCursorY() + "+");
-        if (currentTileI == getPositionI(getCursorX(), getCursorY()) && currentTileJ == getPositionJ(getCursorX(),
+//        System.out.println(Gdx.input.getX() + " : " + Gdx.input.getY());
+//        System.out.println(getCursorX() + " : " + getCursorY() + "+");
+        if (currentTilej == getPositionJ(getCursorX(), getCursorY()) && currentTileI == getPositionI(getCursorX(),
                 getCursorY())) {
             if (hoverTime <= 1f && hoverTime >= 0f) {
                 hoverTime += Gdx.graphics.getDeltaTime();
@@ -133,9 +143,10 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
             }
         } else {
             hoverTime = 0f;
+            currentTilej = getPositionJ(getCursorX(), getCursorY());
             currentTileI = getPositionI(getCursorX(), getCursorY());
-            currentTileJ = getPositionJ(getCursorX(), getCursorY());
-            if (currentTileI > 99 || currentTileI < 0 || currentTileJ > 99 || currentTileJ < 0) currentTileI = currentTileJ = -1;
+            if (currentTilej > 99 || currentTilej < 0 || currentTileI > 99 || currentTileI < 0)
+                currentTilej = currentTileI = -1;
         }
         handleInput();
         Gdx.gl.glClearColor(0.5f, 0.8f, 0.5f, 1);
@@ -154,6 +165,16 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
         spriteBatch.end();
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
+        spriteBatch.begin();
+        for (int i = 0; i < mapSize; i++) {
+            for (int j = 0; j < mapSize; j++) {
+                sprites2d[i][j].setSize(1.8F * camera.zoom, 1.8F * camera.zoom);
+                sprites2d[i][j].setPosition(camera.position.x + (3 * screenWidth / 8 + j * 1.8F) * camera.zoom,
+                        camera.position.y + (i * 1.8F - screenHeight / 2) * camera.zoom);
+                sprites2d[i][j].draw(spriteBatch);
+            }
+        }
+        spriteBatch.end();
     }
     
     @Override
@@ -161,12 +182,12 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
         spriteBatch.dispose();
     }
     
-    public int getPositionI (float x, float y) {
+    public int getPositionJ (float x, float y) {
         double atan = Math.atan(y / (x + MAP_WIDTH / 2));
         return (int) (((Math.cos(Math.atan((float) 8 / 15) - atan) - Math.sin(Math.atan((float) 8 / 15) - atan) / Math.tan(2 * Math.atan((float) 8 / 15))) * Math.sqrt((x + MAP_WIDTH / 2) * (x + MAP_WIDTH / 2) + y * y)) / Math.sqrt(289));
     }
     
-    public int getPositionJ (float x, float y) {
+    public int getPositionI (float x, float y) {
         return (int) ((Math.sin(Math.atan((float) 8 / 15) - Math.atan(y / (x + MAP_WIDTH / 2))) * Math.sqrt((x + MAP_WIDTH / 2) * (x + MAP_WIDTH / 2) + y * y)) / (Math.sqrt(289) * Math.sin(2 * Math.atan((float) 8 / 15))));
     }
     
@@ -178,7 +199,8 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
         if (camera.position.y > MAP_HEIGHT / 2 - camera.viewportHeight * camera.zoom / 2)
             camera.position.y = MAP_HEIGHT / 2 - camera.viewportHeight * camera.zoom / 2;
         else if (camera.position.y < -windowWithTopRightCornerCloseButton.getHeight() - (MAP_HEIGHT / 2 - camera.viewportHeight * camera.zoom / 2))
-            camera.position.y = -windowWithTopRightCornerCloseButton.getHeight() - (MAP_HEIGHT / 2 - camera.viewportHeight * camera.zoom / 2);
+            camera.position.y =
+                    -windowWithTopRightCornerCloseButton.getHeight() - (MAP_HEIGHT / 2 - camera.viewportHeight * camera.zoom / 2);
     }
     
     private void handleInput () {
@@ -199,16 +221,16 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
     public float getCursorY () {
         return camera.zoom * (screenHeight / 2 - Gdx.input.getY()) + camera.position.y;
     }
-
+    
     @Override
-    public boolean keyDown(int keycode) {
-        if (keycode == Input.Keys.NUM_2 && camera.zoom < 5) {
-            camera.zoom += 1;
+    public boolean keyDown (int keycode) {
+        if (keycode == Input.Keys.NUM_2 && camera.zoom < 2) {
+            camera.zoom += 0.1;
         }
-        if (keycode == Input.Keys.NUM_3 && camera.zoom > 1) {
-            camera.zoom -= 1;
+        if (keycode == Input.Keys.NUM_3 && camera.zoom > 0.1) {
+            camera.zoom -= 0.1;
         }
-
+        
         return false;
     }
     
@@ -219,39 +241,39 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
     public float getYFromIAndJ (int i, int j) {
         return (j - i - 1) * 8;
     }
-
+    
     @Override
-    public boolean keyUp(int i) {
+    public boolean keyUp (int i) {
         return false;
     }
-
+    
     @Override
-    public boolean keyTyped(char c) {
+    public boolean keyTyped (char c) {
         return false;
     }
-
+    
     @Override
-    public boolean touchDown(int i, int i1, int i2, int i3) {
+    public boolean touchDown (int i, int i1, int i2, int i3) {
         return false;
     }
-
+    
     @Override
-    public boolean touchUp(int i, int i1, int i2, int i3) {
+    public boolean touchUp (int i, int i1, int i2, int i3) {
         return false;
     }
-
+    
     @Override
-    public boolean touchDragged(int i, int i1, int i2) {
+    public boolean touchDragged (int i, int i1, int i2) {
         return false;
     }
-
+    
     @Override
-    public boolean mouseMoved(int i, int i1) {
+    public boolean mouseMoved (int i, int i1) {
         return false;
     }
-
+    
     @Override
-    public boolean scrolled(float v, float v1) {
+    public boolean scrolled (float v, float v1) {
         return false;
     }
 }
