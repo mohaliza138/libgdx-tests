@@ -2,6 +2,7 @@ package com.view.game;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import view.game.GameMenuGDX;
 
 import java.awt.*;
 

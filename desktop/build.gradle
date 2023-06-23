@@ -1,4 +1,9 @@
 sourceCompatibility = 1.8
+dependencies {
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.google.guava:guava-testlib:31.1-jre'
+    implementation 'com.thoughtworks.xstream:xstream:1.4.20'
+}
 sourceSets.main.java.srcDirs = [ "src/" ]
 sourceSets.main.resources.srcDirs = ["../assets"]
 
