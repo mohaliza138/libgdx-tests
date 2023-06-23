@@ -14,7 +14,7 @@ public class DesktopLauncher {
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         float screenWidth = gd.getDisplayMode().getWidth();
         float screenHeight = gd.getDisplayMode().getHeight();
-        config.setWindowedMode((int) screenWidth, (int) (screenHeight - 150));
+        config.setWindowedMode((int) screenWidth, (int) (screenHeight-150));
         new Lwjgl3Application(new GameMenuGDX(100), config);
     }
 }
