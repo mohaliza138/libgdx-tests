@@ -263,28 +263,14 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
 
     @Override
     public boolean touchDown(int i, int i1, int i2, int i3) {
-        if (i3 == 0) {
-            int x1 = Gdx.input.getX();
-            int y1 = Gdx.input.getY();
-            Vector3 input = new Vector3(x1, y1, 0);
-            camera.unproject(input);
-            for (int k = 0; k < mapSize; k++) {
-                for (int j = 0; j < mapSize; j++) {
-                    Sprite sprite = sprites[k][j];
-                    if (input.x > sprite.getX() && input.x < sprite.getX() + sprite.getWidth()) {
-                        if (input.y > sprite.getY() && input.y < sprite.getY() + sprite.getHeight()) {
-//                            TextureAtlas textureAtlas = new TextureAtlas(Gdx.files.internal("riverTesting.pack"));
-//                            Sprite sprite1 = new Sprite(textureAtlas.findRegion("Tile1"));
-//                            sprite1.setPosition(getXFromIAndJ(k, j), getYFromIAndJ(k, j));
-                            if (sprites[k][j].getColor().b == 0.5 && sprites[k][j].getColor().g == 0.5 && sprites[k][j].getColor().r == 0.5)
-                                sprites[k][j].setColor(1, 1, 1, 1);
-                            else
-                                sprites[k][j].setColor(0.5f, 0.5f, 0.5f,1);
-                            return true;
-                        }
-                    }
-                }
-            }
+        if (i3 == 0 && Gdx.input.isKeyPressed(Input.Keys.S)) {
+            int k = getPositionI(getCursorX(), getCursorY());
+            int j = getPositionJ(getCursorX(), getCursorY());
+            if (sprites[k][j].getColor().b == 0.5 && sprites[k][j].getColor().g == 0.5 && sprites[k][j].getColor().r == 0.5)
+                sprites[k][j].setColor(1, 1, 1, 1);
+            else
+                sprites[k][j].setColor(0.5f, 0.5f, 0.5f,1);
+            return true;
         }
         return false;
     }
@@ -292,12 +278,12 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
 
     @Override
     public boolean touchUp(int i, int i1, int i2, int i3) {
-        return true;
+        return false;
     }
 
     @Override
     public boolean touchDragged(int i, int i1, int i2) {
-        if (Gdx.input.isButtonPressed(0)) {
+        if (i2 == 0 && Gdx.input.isKeyPressed(Input.Keys.S)) {
             int x1 = Gdx.input.getX();
             int y1 = Gdx.input.getY();
             Vector3 input = new Vector3(x1, y1, 0);
@@ -307,9 +293,6 @@ public class GameMenuGDX extends ApplicationAdapter implements InputProcessor{
                     Sprite sprite = sprites[k][j];
                     if (input.x > sprite.getX() && input.x < sprite.getX() + sprite.getWidth()) {
                         if (input.y > sprite.getY() && input.y < sprite.getY() + sprite.getHeight()) {
-//                            TextureAtlas textureAtlas = new TextureAtlas(Gdx.files.internal("riverTesting.pack"));
-//                            Sprite sprite1 = new Sprite(textureAtlas.findRegion("Tile1"));
-//                            sprite1.setPosition(getXFromIAndJ(k, j), getYFromIAndJ(k, j));
                             if (sprites[k][j].getColor().b == 0.5 && sprites[k][j].getColor().g == 0.5 && sprites[k][j].getColor().r == 0.5 && currentTileI != getPositionJ(getCursorX(), getCursorY()) && currentTileJ != getPositionI(getCursorX(),
                                     getCursorY()))
                                 sprites[k][j].setColor(1, 1, 1, 1);
