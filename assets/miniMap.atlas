@@ -1,0 +1,153 @@
+
+miniMap.png
+size: 178, 46
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+beach
+  rotate: false
+  xy: 46, 24
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+boulder
+  rotate: false
+  xy: 156, 2
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+burnt
+  rotate: false
+  xy: 156, 24
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+dense meadow
+  rotate: false
+  xy: 24, 2
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+ditch
+  rotate: false
+  xy: 2, 24
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+grass
+  rotate: false
+  xy: 90, 24
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+iron
+  rotate: false
+  xy: 2, 2
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+lake
+  rotate: false
+  xy: 112, 2
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+meadow
+  rotate: false
+  xy: 134, 24
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+plain
+  rotate: false
+  xy: 134, 24
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+oil
+  rotate: false
+  xy: 134, 2
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+river
+  rotate: false
+  xy: 90, 2
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+sea
+  rotate: false
+  xy: 24, 24
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+shallow water
+  rotate: false
+  xy: 68, 2
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+south rock
+  rotate: false
+  xy: 46, 2
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+east rock
+  rotate: false
+  xy: 46, 2
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+ground
+  rotate: false
+  xy: 46, 2
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+north rock
+  rotate: false
+  xy: 46, 2
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+west rock
+  rotate: false
+  xy: 46, 2
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+stony ground
+  rotate: false
+  xy: 112, 24
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+wheat
+  rotate: false
+  xy: 68, 24
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
