@@ -45,15 +45,14 @@ public class WindowWithTopRightCornerCloseButton extends Window {
         final GameMenuGDX gameMenuGDX = new GameMenuGDX(100);
         final Button closeButton = new ImageButton(closeButtonStyle);
         getTitleTable().add(closeButton).size(30, 30).padRight(200).padTop(50);
+        //   closeButton.addListener(new )
         closeButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("saal=");
                 GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
                 float screenWidth = gd.getDisplayMode().getWidth();
                 float screenHeight = gd.getDisplayMode().getHeight();
                 if (Gdx.input.isKeyPressed(Input.Keys.B)) {
-                    System.out.println("as");
                     System.out.println((closeButton.getX() - screenWidth / 2) * GameMenuGDX.camera.zoom + " : " + GameMenuGDX.camera.zoom * ((closeButton.getY() - ((screenHeight - 150) / 2) + 300)));
                     System.out.println("camera position: " + GameMenuGDX.camera.position.x + " : " + GameMenuGDX.camera.position.y);
                     System.out.println((closeButton.getX() - screenWidth / 2) * GameMenuGDX.camera.zoom + GameMenuGDX.camera.position.x + " : " + (GameMenuGDX.camera.zoom * ((closeButton.getY() - ((screenHeight - 150) / 2) + 300)) + GameMenuGDX.camera.position.y));
