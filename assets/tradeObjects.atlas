@@ -1,0 +1,146 @@
+
+tradeObjects.png
+size: 1024, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+ale
+  rotate: false
+  xy: 777, 32
+  size: 22, 27
+  orig: 22, 27
+  offset: 0, 0
+  index: -1
+apple
+  rotate: false
+  xy: 551, 29
+  size: 40, 30
+  orig: 40, 30
+  offset: 0, 0
+  index: -1
+bow
+  rotate: false
+  xy: 173, 5
+  size: 51, 54
+  orig: 51, 54
+  offset: 0, 0
+  index: -1
+bread
+  rotate: false
+  xy: 465, 26
+  size: 43, 33
+  orig: 43, 33
+  offset: 0, 0
+  index: -1
+cheese
+  rotate: false
+  xy: 694, 30
+  size: 33, 29
+  orig: 33, 29
+  offset: 0, 0
+  index: -1
+crossbow
+  rotate: false
+  xy: 226, 5
+  size: 51, 54
+  orig: 51, 54
+  offset: 0, 0
+  index: -1
+flour
+  rotate: false
+  xy: 593, 18
+  size: 34, 41
+  orig: 34, 41
+  offset: 0, 0
+  index: -1
+hop
+  rotate: false
+  xy: 801, 31
+  size: 20, 28
+  orig: 20, 28
+  offset: 0, 0
+  index: -1
+iron
+  rotate: false
+  xy: 379, 21
+  size: 43, 38
+  orig: 43, 38
+  offset: 0, 0
+  index: -1
+leatherArmor
+  rotate: false
+  xy: 629, 15
+  size: 25, 44
+  orig: 25, 44
+  offset: 0, 0
+  index: -1
+mace
+  rotate: false
+  xy: 120, 5
+  size: 51, 54
+  orig: 51, 54
+  offset: 0, 0
+  index: -1
+meat
+  rotate: false
+  xy: 656, 32
+  size: 36, 27
+  orig: 36, 27
+  offset: 0, 0
+  index: -1
+metalArmor
+  rotate: false
+  xy: 424, 18
+  size: 39, 41
+  orig: 39, 41
+  offset: 0, 0
+  index: -1
+pike
+  rotate: false
+  xy: 2, 2
+  size: 57, 57
+  orig: 57, 57
+  offset: 0, 0
+  index: -1
+pitch
+  rotate: false
+  xy: 729, 24
+  size: 27, 35
+  orig: 27, 35
+  offset: 0, 0
+  index: -1
+spear
+  rotate: false
+  xy: 279, 6
+  size: 51, 53
+  orig: 51, 53
+  offset: 0, 0
+  index: -1
+stone
+  rotate: false
+  xy: 510, 25
+  size: 39, 34
+  orig: 39, 34
+  offset: 0, 0
+  index: -1
+sword
+  rotate: false
+  xy: 61, 2
+  size: 57, 57
+  orig: 57, 57
+  offset: 0, 0
+  index: -1
+wheat
+  rotate: false
+  xy: 758, 15
+  size: 17, 44
+  orig: 17, 44
+  offset: 0, 0
+  index: -1
+wood
+  rotate: false
+  xy: 332, 22
+  size: 45, 37
+  orig: 45, 37
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,118 @@
+
+fire.png
+size: 66, 258
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+fire0
+  rotate: false
+  xy: 34, 98
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+fire1
+  rotate: false
+  xy: 34, 194
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+fire10
+  rotate: false
+  xy: 34, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+fire11
+  rotate: false
+  xy: 2, 66
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+fire12
+  rotate: false
+  xy: 2, 162
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+fire13
+  rotate: false
+  xy: 34, 66
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+fire14
+  rotate: false
+  xy: 34, 162
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+fire15
+  rotate: false
+  xy: 2, 226
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+fire2
+  rotate: false
+  xy: 2, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+fire3
+  rotate: false
+  xy: 2, 98
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+fire4
+  rotate: false
+  xy: 2, 194
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+fire5
+  rotate: false
+  xy: 2, 34
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+fire6
+  rotate: false
+  xy: 2, 130
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+fire7
+  rotate: false
+  xy: 34, 34
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+fire8
+  rotate: false
+  xy: 34, 130
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+fire9
+  rotate: false
+  xy: 34, 226
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1

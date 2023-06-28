@@ -1,0 +1,118 @@
+
+disease.png
+size: 258, 34
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+disease10
+  rotate: false
+  xy: 162, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+disease5
+  rotate: false
+  xy: 162, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+disease11
+  rotate: false
+  xy: 98, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+disease4
+  rotate: false
+  xy: 98, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+disease14
+  rotate: false
+  xy: 2, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+disease1
+  rotate: false
+  xy: 2, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+disease15
+  rotate: false
+  xy: 194, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+disease0
+  rotate: false
+  xy: 194, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+disease2
+  rotate: false
+  xy: 34, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+disease13
+  rotate: false
+  xy: 34, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+disease3
+  rotate: false
+  xy: 226, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+disease12
+  rotate: false
+  xy: 226, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+disease7
+  rotate: false
+  xy: 66, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+disease8
+  rotate: false
+  xy: 66, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+disease9
+  rotate: false
+  xy: 130, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+disease6
+  rotate: false
+  xy: 130, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,62 @@
+
+weaponButton.png
+size: 1024, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Armourer
+  rotate: false
+  xy: 310, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+Armoury
+  rotate: false
+  xy: 79, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+Barrack
+  rotate: false
+  xy: 156, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+BlackSmith
+  rotate: false
+  xy: 464, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+EngineerGuild
+  rotate: false
+  xy: 233, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+Fletcher
+  rotate: false
+  xy: 387, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+MercenaryPost
+  rotate: false
+  xy: 2, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+PoleTurner
+  rotate: false
+  xy: 541, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
