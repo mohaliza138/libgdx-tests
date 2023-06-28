@@ -1,0 +1,146 @@
+
+shopMenu.png
+size: 1024, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+ale
+  rotate: false
+  xy: 859, 2
+  size: 27, 37
+  orig: 27, 37
+  offset: 0, 0
+  index: -1
+apple
+  rotate: false
+  xy: 305, 2
+  size: 47, 37
+  orig: 47, 37
+  offset: 0, 0
+  index: -1
+bow
+  rotate: false
+  xy: 55, 2
+  size: 49, 37
+  orig: 49, 37
+  offset: 0, 0
+  index: -1
+bread
+  rotate: false
+  xy: 256, 2
+  size: 47, 37
+  orig: 47, 37
+  offset: 0, 0
+  index: -1
+cheese
+  rotate: false
+  xy: 544, 2
+  size: 43, 37
+  orig: 43, 37
+  offset: 0, 0
+  index: -1
+crossbow
+  rotate: false
+  xy: 157, 2
+  size: 48, 37
+  orig: 48, 37
+  offset: 0, 0
+  index: -1
+flour
+  rotate: false
+  xy: 828, 2
+  size: 29, 37
+  orig: 29, 37
+  offset: 0, 0
+  index: -1
+hop
+  rotate: false
+  xy: 633, 2
+  size: 42, 37
+  orig: 42, 37
+  offset: 0, 0
+  index: -1
+iron
+  rotate: false
+  xy: 589, 2
+  size: 42, 37
+  orig: 42, 37
+  offset: 0, 0
+  index: -1
+leatherArmor
+  rotate: false
+  xy: 498, 2
+  size: 44, 37
+  orig: 44, 37
+  offset: 0, 0
+  index: -1
+mace
+  rotate: false
+  xy: 207, 2
+  size: 47, 37
+  orig: 47, 37
+  offset: 0, 0
+  index: -1
+meat
+  rotate: false
+  xy: 2, 2
+  size: 51, 37
+  orig: 51, 37
+  offset: 0, 0
+  index: -1
+metalArmor
+  rotate: false
+  xy: 677, 2
+  size: 42, 37
+  orig: 42, 37
+  offset: 0, 0
+  index: -1
+pike
+  rotate: false
+  xy: 106, 2
+  size: 49, 37
+  orig: 49, 37
+  offset: 0, 0
+  index: -1
+pitch
+  rotate: false
+  xy: 763, 2
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+spear
+  rotate: false
+  xy: 354, 2
+  size: 46, 37
+  orig: 46, 37
+  offset: 0, 0
+  index: -1
+stone
+  rotate: false
+  xy: 721, 2
+  size: 40, 37
+  orig: 40, 37
+  offset: 0, 0
+  index: -1
+swort
+  rotate: false
+  xy: 402, 2
+  size: 46, 37
+  orig: 46, 37
+  offset: 0, 0
+  index: -1
+wheat
+  rotate: false
+  xy: 797, 2
+  size: 29, 37
+  orig: 29, 37
+  offset: 0, 0
+  index: -1
+wood
+  rotate: false
+  xy: 450, 2
+  size: 46, 37
+  orig: 46, 37
+  offset: 0, 0
+  index: -1

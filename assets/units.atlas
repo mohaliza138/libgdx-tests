@@ -1,0 +1,174 @@
+
+units.png
+size: 1024, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+ArabianSwordsman
+  rotate: false
+  xy: 642, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+Archer
+  rotate: false
+  xy: 514, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+ArcherBow
+  rotate: false
+  xy: 578, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+Assassin
+  rotate: false
+  xy: 482, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+BatteringRam
+  rotate: false
+  xy: 34, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+BlackMonk
+  rotate: false
+  xy: 130, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+Catapult
+  rotate: false
+  xy: 674, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+Crossbowman
+  rotate: false
+  xy: 162, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+Engineer
+  rotate: false
+  xy: 226, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+FireBallista
+  rotate: false
+  xy: 258, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+FireThrower
+  rotate: false
+  xy: 706, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+HorseArcher
+  rotate: false
+  xy: 194, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+Knight
+  rotate: false
+  xy: 354, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+Ladderman
+  rotate: false
+  xy: 450, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+Maceman
+  rotate: false
+  xy: 66, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+Pikeman
+  rotate: false
+  xy: 98, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+PortableShield
+  rotate: false
+  xy: 386, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+SiegeTower
+  rotate: false
+  xy: 738, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+Slaves
+  rotate: false
+  xy: 610, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+Slinger
+  rotate: false
+  xy: 290, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+Spearman
+  rotate: false
+  xy: 418, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+Swordsman
+  rotate: false
+  xy: 2, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+Trebuchet
+  rotate: false
+  xy: 546, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+Tunneler
+  rotate: false
+  xy: 322, 2
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1

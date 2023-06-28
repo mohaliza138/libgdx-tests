@@ -1,0 +1,13 @@
+
+settingsButton.png
+size: 32, 32
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+settings
+  rotate: false
+  xy: 2, 2
+  size: 14, 20
+  orig: 14, 20
+  offset: 0, 0
+  index: -1

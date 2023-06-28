@@ -1,0 +1,55 @@
+
+industryButton.png
+size: 512, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+IronMine
+  rotate: false
+  xy: 218, 50
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+Market
+  rotate: false
+  xy: 74, 50
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+OxTether
+  rotate: false
+  xy: 2, 2
+  size: 70, 46
+  orig: 70, 46
+  offset: 0, 0
+  index: -1
+PitchRig
+  rotate: false
+  xy: 290, 50
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+Quarry
+  rotate: false
+  xy: 146, 50
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+StockPile
+  rotate: false
+  xy: 362, 82
+  size: 70, 38
+  orig: 70, 38
+  offset: 0, 0
+  index: -1
+Woodcutter
+  rotate: false
+  xy: 2, 50
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1

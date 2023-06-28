@@ -1,0 +1,104 @@
+
+castleButton.png
+size: 512, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+BigStoneGatehouse
+  rotate: false
+  xy: 418, 71
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+CagedWarDogs
+  rotate: false
+  xy: 262, 71
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+DefenciveTurret
+  rotate: false
+  xy: 158, 71
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+DrawBridge
+  rotate: false
+  xy: 210, 19
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+KillingPit
+  rotate: false
+  xy: 314, 71
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+LookoutTower
+  rotate: false
+  xy: 54, 54
+  size: 50, 67
+  orig: 50, 67
+  offset: 0, 0
+  index: -1
+OilSmelter
+  rotate: false
+  xy: 158, 19
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+PerimeterTower
+  rotate: false
+  xy: 210, 71
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+RoundTower
+  rotate: false
+  xy: 54, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+ShortWall
+  rotate: false
+  xy: 106, 61
+  size: 50, 60
+  orig: 50, 60
+  offset: 0, 0
+  index: -1
+SmallStoneGatehouse
+  rotate: false
+  xy: 366, 71
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+SquareTower
+  rotate: false
+  xy: 262, 19
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+Stable
+  rotate: false
+  xy: 106, 9
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+TallWall
+  rotate: false
+  xy: 2, 34
+  size: 50, 87
+  orig: 50, 87
+  offset: 0, 0
+  index: -1

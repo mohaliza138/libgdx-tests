@@ -1,0 +1,48 @@
+
+buildMenu.png
+size: 512, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+castle
+  rotate: false
+  xy: 237, 7
+  size: 45, 42
+  orig: 45, 42
+  offset: 0, 0
+  index: -1
+food
+  rotate: false
+  xy: 190, 5
+  size: 45, 44
+  orig: 45, 44
+  offset: 0, 0
+  index: -1
+house
+  rotate: false
+  xy: 96, 4
+  size: 45, 45
+  orig: 45, 45
+  offset: 0, 0
+  index: -1
+industry
+  rotate: false
+  xy: 2, 2
+  size: 45, 47
+  orig: 45, 47
+  offset: 0, 0
+  index: -1
+processor
+  rotate: false
+  xy: 143, 4
+  size: 45, 45
+  orig: 45, 45
+  offset: 0, 0
+  index: -1
+weapon
+  rotate: false
+  xy: 49, 3
+  size: 45, 46
+  orig: 45, 46
+  offset: 0, 0
+  index: -1
